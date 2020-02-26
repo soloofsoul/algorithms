@@ -1,2 +1,5 @@
-# algorithms
-Javascript implementation of algorithms
+Problems solving using Javascript
+
+* [toLowerCase.js](toLowerCase.js)
+
+
