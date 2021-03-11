@@ -52,3 +52,18 @@ const checkPermutation = (str1, str2) => {
 };
 
 console.log(checkPermutation('abac', 'aabc'));
+
+/*
+Quick solution
+ */
+const checkPermutation1 = (str1, str2) => {
+  if (str1.length !== str2.length) {
+    return false;
+  } else {
+    if (str1.split('').sort().join('') === str2.split('').sort().join('')) {
+      return true;
+    }
+  }
+};
+
+console.log(checkPermutation1('abac', 'abca'));
