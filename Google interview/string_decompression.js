@@ -31,7 +31,7 @@ This question gives you the chance to practice with strings, recursion, algorith
  */
 
 const decomp = str => {
-  let i, num = '', char, numberEndPos = -1, openedCount = 0, start = -1, end;
+  let i, num = '', char, numberEndPos = -1, numberStartPos = -1, openedCount = 0, start = -1, end;
 
 
   for(i = 0; i < str.length; i++) {
@@ -53,12 +53,16 @@ const decomp = str => {
         break;
       }
     }
+
+    if (numberStartPos === -1 && !isNaN(str[i])) {
+      numberStartPos = i;
+    }
   }
 
   if (start === -1) {
     return str;
   } else {
-    num = str.substring(0, numberEndPos);
+    num = str.substring(numberStartPos, numberEndPos);
     const decopmStr = decomp(str.substring(start + 1, end));
     let decompFinal = ''
 
@@ -68,9 +72,8 @@ const decomp = str => {
 
     const rightStr = str.substring(end + 1, str.length);
     const rightDecompStr = rightStr.length === 0 ? '' : decomp(rightStr);
+    const leftStr = str.substring(0, numberStartPos);
 
-    return `${decompFinal}${rightDecompStr}`;
+    return `${leftStr.length > 0 ? leftStr : ''}${decompFinal}${rightDecompStr}`;
   }
-
-  return 'finalStr';
 };
