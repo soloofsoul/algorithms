@@ -1,4 +1,8 @@
-// Shell sort with Sendgewick increment sequence 3x+1
+/*
+Shell sort with increment sequence 3x+1
+
+TODO: implement Sendgewick increment sequence
+*/
 
 function swapItems(arr, p, q) {
   const swap = arr[p];
