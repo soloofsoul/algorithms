@@ -1,6 +1,8 @@
 /*
 Best case: number of compares is ~ N lg N
 Worst case: number of compares is ~ 1/2 N*N (when shuffle actually sorted array)
+
+Random shuffle is probabilistic guarantee against worst case
 */
 function swap(arr, p, q) {
   const temp = arr[p];
@@ -40,7 +42,22 @@ function partition(arr, lo, hi) {
 }
 
 function sort(arr, lo, hi) {
+  /*
+  Improvement: for tiny arrays this piece of code
+  if (hi <= lo + CUTOFF - 1) {
+    insertionSort(a, lo, hi);
+    return;
+  }
+  instead of this one: if (hi <= lo) return;
+  */
   if (hi <= lo) return;
+
+  /*
+  Improvement: best choice for pivot item = median
+  Median-of-3 (random items)
+  int m = medianOf3(a, lo, lo + (hi - lo)/2, hi);
+  swap(a, lo, m);
+   */
 
   let j = partition(arr, lo, hi);
   sort(arr, lo, j-1);
